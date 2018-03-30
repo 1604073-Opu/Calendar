@@ -56,4 +56,46 @@ public class Informations {
         }
         return w_day;
     }
+    public int setTotalDays(int y, int m) {
+         int total_days=0;
+        if (m == 1) {
+            total_days = 31;
+        } else if (m == 2) {
+            if (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) {
+                total_days = 29;
+            } else {
+                total_days = 28;
+            }
+        } else if (m == 3) {
+            total_days = 31;
+
+        } else if (m == 4) {
+            total_days = 30;
+
+        } else if (m == 5) {
+            total_days = 31;
+
+        } else if (m == 6) {
+            total_days = 30;
+
+        } else if (m == 7) {
+            total_days = 31;
+
+        } else if (m == 8) {
+            total_days = 31;
+
+        } else if (m == 9) {
+            total_days = 30;
+
+        } else if (m == 10) {
+            total_days = 31;
+
+        } else if (m == 11) {
+            total_days = 30;
+
+        } else if (m == 12) {
+            total_days = 31;
+        }
+        return total_days;
+    }
 }
