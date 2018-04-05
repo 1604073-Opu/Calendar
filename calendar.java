@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-
 public class calendar extends JFrame {
 
     JFrame mainframe = new JFrame("Calendar");
@@ -22,7 +21,7 @@ public class calendar extends JFrame {
         mainframe.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         Show();
         mainframe.setVisible(true);
-        
+
     }
 
     void Show() {
@@ -32,86 +31,80 @@ public class calendar extends JFrame {
         mainframe.setSize(500, 400);
         showYear();
         showMonth();
-        Informations now=new Informations();
-        total_days=now.setTotalDays(year, month);
+        Informations now = new Informations();
+        total_days = now.setTotalDays(year, month);
         showDates();
         Buttons();
-        JButton info=new JButton(new ImageIcon(getClass().getResource("info.png")));
-        info.setBounds(440,325,32,32);
+        JButton info = new JButton(new ImageIcon(getClass().getResource("info.png")));
+        info.setBounds(440, 325, 32, 32);
         info.setBorder(BorderFactory.createEmptyBorder());
         info.setFocusable(true);
         info.setContentAreaFilled(false);
         mainframe.add(info);
-        info.addActionListener(new ActionListener(){
+        info.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 infoActionPerformed(e);
             }
         });
     }
-    
-    public void infoActionPerformed(ActionEvent e)
-    {
-        JFrame info=new JFrame("Info");
+
+    public void infoActionPerformed(ActionEvent e) {
+        JFrame info = new JFrame("Info");
         info.setLayout(null);
         info.setResizable(false);
         info.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         info.setVisible(true);
-        info.setLocation(410,275);
-        info.setSize(475,203);
+        info.setLocation(410, 275);
+        info.setSize(475, 203);
         info.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         info.setContentPane(new JLabel(new ImageIcon(getClass().getResource("background.jpg"))));
-        JLabel me=new JLabel(new ImageIcon(getClass().getResource("me.JPG")));
-        me.setBounds(0,0,130,175);
-        JLabel text[]={new JLabel("Simple Calendar!"),new JLabel("Md. Nahidul Islam Opu"),new JLabel("Department of Computer Science & Engineering"),new JLabel("Chittagong University of Engineering & Technology"),new JLabel("March 30, 2018"),new JLabel("opu.nahidul@gmail.com")};
-       for(int i=0;i<6;i++){
-           text[i].setBounds(130,-90+i*20,340,200);
-           if(i==0) text[i].setFont(new Font("Times New Roman",1,16));
-           else text[i].setFont(new Font("Times New Roman",0,14));
-        text[i].setForeground(Color.white);
-        info.add(text[i]);
-       }
-       JButton ok=new JButton("OK");
-       ok.setBackground(Color.BLACK);
-       ok.setForeground(Color.WHITE);
-       ok.setFocusable(false);
-       ok.setLocation(250, 130);
-       ok.setSize(60,30);
-       info.add(ok);
+        JLabel me = new JLabel(new ImageIcon(getClass().getResource("me.JPG")));
+        me.setBounds(0, 0, 130, 175);
+        JLabel text[] = {new JLabel("Simple Calendar!"), new JLabel("Md. Nahidul Islam Opu"), new JLabel("Department of Computer Science & Engineering"), new JLabel("Chittagong University of Engineering & Technology"), new JLabel("March 30, 2018"), new JLabel("opu.nahidul@gmail.com")};
+        for (int i = 0; i < 6; i++) {
+            text[i].setBounds(130, -90 + i * 20, 340, 200);
+            if (i == 0) {
+                text[i].setFont(new Font("Times New Roman", 1, 16));
+            } else {
+                text[i].setFont(new Font("Times New Roman", 0, 14));
+            }
+            text[i].setForeground(Color.white);
+            info.add(text[i]);
+        }
+        JButton ok = new JButton("OK");
+        ok.setBackground(Color.BLACK);
+        ok.setForeground(Color.WHITE);
+        ok.setFocusable(false);
+        ok.setLocation(250, 130);
+        ok.setSize(60, 30);
+        info.add(ok);
         info.add(me);
-        ok.addActionListener(new ActionListener(){
+        ok.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 info.setVisible(false);
             }
         });
     }
-    
+
     void showYear() {
-        JPanel p = new JPanel();
-        p.setLocation(218, 10);
-        p.setSize(50, 30);
-        p.setBackground(Color.white);
         JLabel y = new JLabel();
-        y.setBounds(218, 10, 50, 30);
+        y.setLocation(218, 10);
+        y.setSize(50, 30);
         y.setFont(new java.awt.Font("Times New Roman", 1, 22));
+        y.setForeground(Color.white);
         y.setText(String.valueOf(year));
-        p.add(y);
-        mainframe.add(p);
+        mainframe.add(y);
     }
 
     void showMonth() {
-        JPanel p = new JPanel();
-        p.setBackground(Color.white);
-        p.setLocation(195, 48);
-        p.setSize(98, 32);
         String[] m_names = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         JComboBox<String> m = new JComboBox<>(m_names);
+        m.setLocation(195, 48);
+        m.setSize(98, 32);
         m.setSelectedIndex(month - 1);
         m.setVisible(true);
-        p.add(m);
         m.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,7 +113,8 @@ public class calendar extends JFrame {
                 Show();
             }
         });
-        mainframe.add(p);
+        m.setOpaque(false);
+        mainframe.add(m);
     }
 
     void showDates() {
@@ -130,16 +124,16 @@ public class calendar extends JFrame {
         panel.repaint();
         Informations now = new Informations();
         JLabel[] w_day1 = {new JLabel("  SUN"), new JLabel("  MON"), new JLabel("  TUE"), new JLabel("  WED"), new JLabel("  THU"), new JLabel("  FRI"), new JLabel("  SAT")};
-        w_day1[6].setForeground(Color.green);
-        w_day1[5].setForeground(Color.green);
         JPanel panel1 = new JPanel(new GridLayout(1, 7));
-        panel1.setBackground(Color.white);
-        panel.setBackground(Color.white);
         panel1.setSize(300, 30);
         panel1.setLocation(100, 100);
         for (i = 0; i < 7; i++) {
+            w_day1[i].setFont(new Font("Sherrif", 1, 14));
+            w_day1[i].setForeground(Color.white);
             panel1.add(w_day1[i]);
         }
+        w_day1[6].setForeground(Color.green);
+        w_day1[5].setForeground(Color.green);
         JLabel date[] = new JLabel[36];
         panel.setLocation(100, 120);
         panel.setSize(300, 180);
@@ -148,9 +142,10 @@ public class calendar extends JFrame {
             date[i] = new JLabel();
             if (year == now.year() && month == now.month() && (i - w_day + 1) == now.date()) {
                 date[i].setForeground(Color.red);
-            }
-            else if (i % 7 == 0 || i % 7 == 6) {
+            } else if (i % 7 == 0 || i % 7 == 6) {
                 date[i].setForeground(Color.green);
+            } else {
+                date[i].setForeground(Color.white);
             }
             if ((28 + (7 - w_day + 1)) < total_days) {
                 x = (36 - w_day) + i;
@@ -170,8 +165,11 @@ public class calendar extends JFrame {
                     date[i].setText("    " + String.valueOf(i - w_day + 1));
                 }
             }
+            date[i].setFont(new Font("Sherrif", 1, 14));
             panel.add(date[i]);
         }
+        panel.setOpaque(false);
+        panel1.setOpaque(false);
         mainframe.add(panel1);
         mainframe.add(panel);
     }
@@ -330,12 +328,12 @@ public class calendar extends JFrame {
         P1.add(read);
         String[] m_names = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         JComboBox<String> m = new JComboBox<>(m_names);
-        m.setSelectedIndex(0);
+        m.setSelectedIndex(month - 1);
         m.setVisible(true);
-        m.setBounds(100,60,100,30);
+        m.setBounds(100, 60, 100, 30);
         P1.add(m);
         inputframe.add(P1);
-        month=1;
+        month = 1;
         m.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -347,9 +345,15 @@ public class calendar extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = read.getText();
-                year = Integer.parseInt(s);
-                inputframe.setVisible(false);
-                Show();
+                Integer x = Integer.parseInt(s);
+                if (x < 1 || x > 9999) {
+                    inputframe.setVisible(false);
+                    jumpActionPerformed(e);
+                } else {
+                    year =(int) x;
+                    inputframe.setVisible(false);
+                    Show();
+                }
             }
         });
     }
@@ -365,5 +369,4 @@ public class calendar extends JFrame {
         main.setValues();
         main.frame();
     }
-
 }
